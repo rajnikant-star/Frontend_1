@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Selectors - Portfolio</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #68BF78, #4A9F5A);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 18px;
+      font-style: italic;
+    }
+
+    /* Navigation */
+    nav {
+      background: #253D2C;
+      text-align: center;
+      padding: 15px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #FFD700;
+    }
+
+    /* Sections */
+    section {
+      width: 80%;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    section h2 {
+      color: #68BF78;
+      border-bottom: 2px solid #253D2C;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    section p, section ul {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Skills & Projects */
+    .skills ul, .projects ul {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+    .skills li, .projects li {
+      margin-bottom: 8px;
+    }
+
+    /* Contact */
+    #contact p {
+      margin: 8px 0;
+    }
+
+    /* Footer */
+    footer {
+      background: #253D2C;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Introduction</h1>
+    <p>Computer Science Student | Aspiring Developer</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I’m Rajnikant Tarun, a Computer Science major from Nalanda, Bihar, India. 
+       I enjoy working with Linux, Unreal Engine, Java, and databases. My goal is to 
+       become a versatile developer and create innovative projects.</p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Java Programming (OOP, Arrays, Strings)</li>
+      <li>Linux (Fedora, Arch, Hyprland customization)</li>
+      <li>Unreal Engine 5 (Tekken-style mechanics)</li>
+      <li>MySQL & DBMS Fundamentals</li>
+      <li>HTML & Web Development Basics</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li>Games Mod Hub Website (HTML)</li>
+      <li>Unreal Engine Fighting Game Prototype</li>
+      <li>Database Models (Waterfall, Spiral, RAD)</li>
+      <li>Linux Desktop Customization (Celesteia-style)</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p><b>Email:</b> rajnikant@example.com</p>
+    <p><b>Phone:</b> +91-9876543210</p>
+    <p><b>Location:</b> Nalanda, Bihar, India</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Rajnikant Tarun | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
