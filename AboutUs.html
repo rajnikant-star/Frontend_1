@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us</title>
+  <style>
+    /* Element Selector */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4; /* HEX */
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* ID Selector */
+    #about {
+      background-color: rgb(104, 191, 120); /* RGB */
+      color: #fff;
+      padding: 40px;
+      text-align: center;
+    }
+    #about h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    #about p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    /* Class Selector */
+    .highlight {
+      color: #FFD700; /* HEX gold */
+      font-weight: bold;
+    }
+
+    /* Pseudo-class Selector */
+    a {
+      color: #0072ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      color: #FF4500; /* Orange Red */
+      text-decoration: underline;
+    }
+
+    /* Section Styling */
+    section {
+      width: 80%;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    section h2 {
+      color: #4A9F5A;
+      border-bottom: 2px solid #253D2C;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    /* Ordered List Styling */
+    ol.movies {
+      list-style-type: upper-roman;
+      padding-left: 20px;
+    }
+    ol.movies li {
+      margin: 8px 0;
+      color: #253D2C;
+      font-weight: bold;
+    }
+
+    /* Unordered List Styling */
+    ul.cities {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+    ul.cities li {
+      margin: 8px 0;
+      color: rgb(255, 69, 0); /* Orange Red */
+    }
+
+    /* Footer */
+    footer {
+      background: #253D2C;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- About Section -->
+  <section id="about">
+    <h1>About Us</h1>
+    <p>We are a team of <span class="highlight">creative developers</span> passionate about building modern web applications.</p>
+    <p>Our mission is to deliver <span class="highlight">innovative solutions</span> with clean design and efficient code.</p>
+    <a href="#">Learn More</a>
+  </section>
+
+  <!-- Movies Section -->
+  <section>
+    <h2>Favorite Movies</h2>
+    <ol class="movies">
+      <li>Inception</li>
+      <li>The Matrix</li>
+      <li>Interstellar</li>
+      <li>Avengers: Endgame</li>
+    </ol>
+  </section>
+
+  <!-- Cities Section -->
+  <section>
+    <h2>Top Cities</h2>
+    <ul class="cities">
+      <li>New York</li>
+      <li>Tokyo</li>
+      <li>Paris</li>
+      <li>Delhi</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Creative Devs | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
