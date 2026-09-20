@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Game Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #a5d6a7; /* greenish theme */
+            font-family: Arial, sans-serif;
+        }
+
+        .heading {
+            background-color: #1b5e20; /* dark green header */
+            color: white;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .sidebar {
+            background-color: #e8f5e9;
+            border: 1px solid #81c784;
+            padding: 20px;
+            min-height: 300px;
+        }
+
+        .sidebar h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            color: #2e7d32;
+        }
+
+        .product-card {
+            background-color: white;
+            margin: 10px;
+            padding: 20px;
+            border: 2px solid #c8e6c9;
+        }
+
+        .product-card img {
+            width: 180px;
+            height: 130px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            color: #1b5e20;
+        }
+
+        .price {
+            color: #2e7d32;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .blog-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #1b5e20;
+        }
+
+        .blog-card {
+            background-color: white;
+            padding: 20px;
+            margin: 8px;
+            border: 1px solid #ccc;
+            min-height: 230px;
+        }
+
+        .blog-card h4 {
+            color: #388e3c;
+        }
+
+        .blog-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 20px;
+                min-height: auto;
+            }
+
+            .product-card {
+                margin: 10px 0;
+            }
+
+            .blog-card {
+                margin: 10px 0;
+            }
+
+            .heading {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heading">
+        <div class="container">
+            <h1>Steam‑Style Game Shop</h1>
+            <p class="mb-0">Discover and buy your favorite PC games</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h4>Game Categories</h4>
+
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#">Action</a></li>
+                        <li class="list-group-item"><a href="#">Adventure</a></li>
+                        <li class="list-group-item"><a href="#">RPG</a></li>
+                        <li class="list-group-item"><a href="#">Shooter</a></li>
+                        <li class="list-group-item"><a href="#">Indie</a></li>
+                    </ul>
+
+                    <p class="mt-3">
+                        Browse through categories to find the latest and most popular games.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="product-card">
+                    <div class="row align-items-center">
+
+                        <div class="col-md-5 text-center">
+                            <img src="https://4kwallpapers.com/images/walls/thumbs_2t/27206.jpg"
+                                 alt="GTA VI">
+                        </div>
+
+                        <div class="col-md-7">
+                            <h3>Grand Theft Auto VI</h3>
+
+                            <p>
+                                Experience the next chapter in Rockstar’s legendary open‑world series.
+                                GTA VI brings stunning visuals, immersive gameplay, and a massive new city to explore.
+                            </p>
+
+                            <p>
+                                Play solo or online with friends, complete missions, and build your empire in the most ambitious GTA yet.
+                            </p>
+
+                            <p class="price">₹15,999</p>
+
+                            <button class="btn btn-success">Buy Now</button>
+                            <button class="btn btn-outline-secondary">View Details</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <h2 class="blog-title">Latest Gaming News</h2>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="blog-card">
+                    <h4>Upcoming Releases</h4>
+                    <p>Stay updated with the hottest titles launching this year across PC and consoles.</p>
+                    <button class="btn btn-outline-success">Read More</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="blog-card">
+                    <h4>Top Steam Deals</h4>
+                    <p>Discover discounted games and limited‑time offers available on Steam right now.</p>
+                    <button class="btn btn-outline-success">Read More</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="blog-card">
+                    <h4>Community Highlights</h4>
+                    <p>Check out mods, fan creations, and multiplayer events happening in your favorite games.</p>
+                    <button class="btn btn-outline-success">Read More</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p class="mb-0">© 2026 Steam‑Style Game Shop | Designed for Gaming Enthusiasts</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
