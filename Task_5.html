@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Eligibility checker</title>
+</head>
+<body>
+    <script>
+        let age = prompt("Enter your Age:");
+        age = Number(age);
+        if(age >= 18){
+            alert("You are Eligible for vote");
+        }
+        else{
+            alert("You are not Eligible for Age");
+        }
+        document.write("Your age"+age+"<br>");
+        
+        if (age >= 18) {
+            document.write("You are Eligible to Vote");
+        } else {
+            document.write("You are Not Eligible to Vote");
+        }
+        let date = prompt("Enter your entry date for Navratre Celebration:");
+        date = Number(date);
+        let result = (date >=11 && date <=19) ? "Eligible":"Not Eligible";
+        document.write("<br>Navratri Entry Status: " + result);
+        </script>
+</body>
+</html>
