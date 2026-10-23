@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+const students = [
+    { name: "Rahul", marks: 85 },
+    { name: "Priya", marks: 32 },
+    { name: "Amit", marks: 67 },
+    { name: "Sneha", marks: 90 },
+    { name: "Kiran", marks: 28 }
+];
+
+
+function studentReport(studentArray) {
+
+
+    const updatedStudents = studentArray.map(student => ({
+        name: student.name,
+        marks: Math.min(student.marks + 5, 100)
+    }));
+
+
+    const passingStudents = updatedStudents.filter(
+        student => student.marks >= 40
+    );
+
+
+    const averageMarks =
+        passingStudents.reduce((sum, student) => sum + student.marks, 0) /
+        passingStudents.length;
+
+
+    return { passingStudents, averageMarks };
+}
+
+
+(function () {
+    const report = studentReport(students);
+
+    console.log("===== FINAL REPORT =====");
+
+
+    report.passingStudents.forEach(student => {
+        console.log(`${student.name} : ${student.marks} marks`);
+    });
+
+    console.log(
+        `Average Marks of Passing Students: ${report.averageMarks.toFixed(2)}`
+    );
+})();
+
+</script>
+</body>
+</html>
