@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task 8 - Advanced DOM Applications</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 720px; margin: 20px auto; padding: 0 16px; background: #f4f6f8; color: #222; }
+  h1 { font-size: 1.4rem; }
+  section { background: #fff; padding: 16px 20px; margin-bottom: 24px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+  #todo-form { display: flex; gap: 8px; margin-bottom: 12px; }
+  #todo-input { flex: 1; padding: 8px; font-size: 1rem; }
+  button { cursor: pointer; padding: 6px 10px; border: 1px solid #888; border-radius: 4px; background: #eee; }
+  button:hover:not(:disabled) { background: #ddd; }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  #todo-list { list-style: none; padding: 0; margin: 0; }
+  #todo-list li { display: flex; align-items: center; gap: 8px; padding: 8px; border-bottom: 1px solid #ddd; }
+  #todo-list li .text { flex: 1; }
+  #todo-list li.done .text { text-decoration: line-through; color: #888; }
+  #status { font-size: .9rem; color: #555; margin-top: 8px; }
+  #board-controls { margin-bottom: 12px; }
+  #board-controls input { width: 70px; padding: 4px; }
+</style>
+</head>
+<body>
+
+<section>
+  <h1>To-Do List (move up/down + checkboxes)</h1>
+  <form id="todo-form">
+    <input id="todo-input" type="text" placeholder="Add a task..." required>
+    <button type="submit">Add</button>
+  </form>
+  <ul id="todo-list"></ul>
+  <div id="status"></div>
+</section>
+
+<section>
+  <h1>Dynamic Chessboard</h1>
+  <div id="board-controls">
+    Size: <input id="board-size" type="number" min="2" max="16" value="8">
+    Square (px): <input id="square-size" type="number" min="20" max="80" value="50">
+    <button id="build-btn">Generate</button>
+  </div>
+  <div id="chessboard"></div>
+</section>
+
+<script>
+/* ---------- To-Do List ---------- */
+const form = document.getElementById('todo-form');
+const input = document.getElementById('todo-input');
+const list = document.getElementById('todo-list');
+const status = document.getElementById('status');
+
+function updateStatus() {
+  const total = list.children.length;
+  const done = list.querySelectorAll('li.done').length;
+  status.textContent = total + ' task(s), ' + done + ' completed';
+}
+
+// Disable "up" on first item and "down" on last item
+function refreshButtons() {
+  Array.from(list.children).forEach((li, i) => {
+    li.querySelector('.up').disabled = (i === 0);
+    li.querySelector('.down').disabled = (i === list.children.length - 1);
+  });
+  updateStatus();
+}
+
+function createTodo(text) {
+  const li = document.createElement('li');
+
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.addEventListener('change', () => {
+    li.classList.toggle('done', cb.checked);
+    updateStatus();
+  });
+
+  const span = document.createElement('span');
+  span.className = 'text';
+  span.textContent = text;
+
+  const up = document.createElement('button');
+  up.className = 'up';
+  up.textContent = '↑';
+  up.title = 'Move up';
+  up.addEventListener('click', () => {
+    const prev = li.previousElementSibling;
+    if (prev) { list.insertBefore(li, prev); refreshButtons(); }
+  });
+
+  const down = document.createElement('button');
+  down.className = 'down';
+  down.textContent = '↓';
+  down.title = 'Move down';
+  down.addEventListener('click', () => {
+    const next = li.nextElementSibling;
+    if (next) { list.insertBefore(next, li); refreshButtons(); }
+  });
+
+  const del = document.createElement('button');
+  del.textContent = '✕';
+  del.title = 'Delete';
+  del.addEventListener('click', () => { li.remove(); refreshButtons(); });
+
+  li.append(cb, span, up, down, del);
+  return li;
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+  list.appendChild(createTodo(text));
+  input.value = '';
+  input.focus();
+  refreshButtons();
+});
+
+['Learn DOM manipulation', 'Practice event handling', 'Build a chessboard'].forEach(t => list.appendChild(createTodo(t)));
+refreshButtons();
+
+/* ---------- Chessboard ---------- */
+const board = document.getElementById('chessboard');
+
+function buildBoard(size, squarePx) {
+  board.innerHTML = '';                       // clear previous board
+
+  // Programmatic CSS on the container
+  board.style.display = 'grid';
+  board.style.gridTemplateColumns = 'repeat(' + size + ', ' + squarePx + 'px)';
+  board.style.gridTemplateRows = 'repeat(' + size + ', ' + squarePx + 'px)';
+  board.style.width = (size * squarePx) + 'px';
+  board.style.border = '3px solid #333';
+
+  // Nested loops generate each square
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+      const sq = document.createElement('div');
+      const isLight = (row + col) % 2 === 0;
+      sq.style.backgroundColor = isLight ? '#f0d9b5' : '#b58863';
+      sq.style.display = 'flex';
+      sq.style.alignItems = 'center';
+      sq.style.justifyContent = 'center';
+      sq.style.fontSize = Math.round(squarePx * 0.35) + 'px';
+      sq.style.color = isLight ? '#b58863' : '#f0d9b5';
+      sq.style.cursor = 'pointer';
+      sq.title = String.fromCharCode(97 + (col % 26)) + (size - row);
+      if (size === 8) sq.textContent = sq.title;   // standard notation label
+
+      // Click highlight toggle
+      sq.addEventListener('click', () => {
+        sq.style.outline = sq.style.outline ? '' : '3px solid #e74c3c';
+        sq.style.outlineOffset = '-3px';
+      });
+      board.appendChild(sq);
+    }
+  }
+}
+
+document.getElementById('build-btn').addEventListener('click', () => {
+  const size = Math.min(16, Math.max(2, parseInt(document.getElementById('board-size').value) || 8));
+  const px = Math.min(80, Math.max(20, parseInt(document.getElementById('square-size').value) || 50));
+  buildBoard(size, px);
+});
+
+buildBoard(8, 50);
+</script>
+</body>
+</html>
