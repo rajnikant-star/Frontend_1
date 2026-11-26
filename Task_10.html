@@ -1,0 +1,203 @@
+<html>
+<head>
+    <title>University Finder</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            max-width: 850px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            padding: 12px;
+            width: 60%;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 25px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #007bff;
+        }
+
+        #message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>University Finder</h2>
+
+        <p>Enter a country name to find its universities.</p>
+
+        <input type="text" id="country"
+        placeholder="Enter country name">
+
+        <button onclick="getUniversities()">Search</button>
+
+        <p id="message"></p>
+
+        <table id="resultTable" style="display:none">
+
+            <thead>
+                <tr>
+                    <th>University Name</th>
+                    <th>Website</th>
+                    <th>University Link</th>
+                </tr>
+            </thead>
+
+            <tbody id="universityData"></tbody>
+
+        </table>
+
+    </div>
+
+    <script>
+
+        async function getUniversities() {
+
+    let country = document.getElementById("country").value.trim();
+
+    let message = document.getElementById("message");
+
+    let table = document.getElementById("resultTable");
+
+    let data = document.getElementById("universityData");
+
+    if (country === "") {
+        message.innerHTML = "Please enter a country name.";
+        table.style.display = "none";
+        return;
+    }
+
+    message.innerHTML = "Fetching university data...";
+
+    table.style.display = "none";
+    data.innerHTML = "";
+
+    try {
+
+        let response = await fetch(
+            "https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json"
+        );
+
+        if (!response.ok) {
+            throw new Error("API request failed: " + response.status);
+        }
+
+        let universities = await response.json();
+
+        let filtered = universities.filter(function(uni) {
+            return uni.country.toLowerCase() === country.toLowerCase();
+        });
+
+        if (filtered.length === 0) {
+            message.innerHTML = "No universities found for " + country;
+            return;
+        }
+
+        filtered.forEach(function(uni) {
+
+            let row = document.createElement("tr");
+
+            let name = document.createElement("td");
+            name.textContent = uni.name;
+
+            let website = document.createElement("td");
+            website.textContent = uni.domains.join(", ");
+
+            let link = document.createElement("td");
+
+            uni.web_pages.forEach(function(url) {
+
+                let a = document.createElement("a");
+
+                a.href = url;
+                a.textContent = "Visit Website";
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+
+                link.appendChild(a);
+                link.appendChild(document.createElement("br"));
+
+            });
+
+            row.appendChild(name);
+            row.appendChild(website);
+            row.appendChild(link);
+
+            data.appendChild(row);
+
+        });
+
+        message.innerHTML = "Universities found: " + filtered.length;
+
+        table.style.display = "table";
+
+    }
+
+    catch(error) {
+
+        message.innerHTML = "Error: " + error.message;
+
+        console.log(error);
+
+    }
+
+}
+    </script>
+
+</body>
+</html>
