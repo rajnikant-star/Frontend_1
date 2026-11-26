@@ -1,0 +1,122 @@
+<html>
+<head>
+    <title>Asynchronous Programming</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .loading {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Asynchronous Data Fetching</h2>
+
+        <p>Click the button to fetch server data.</p>
+
+        <button onclick="fetchData()">Fetch Data</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        function getServerData() {
+
+            return new Promise(function(resolve, reject) {
+
+                setTimeout(function() {
+
+                    let data = {
+                        name: "Rajnikant",
+                        course: "B.Tech CSE",
+                        university: "GLA University"
+                    };
+
+                    resolve(data);
+
+                }, 3000);
+
+            });
+
+        }
+
+        function fetchData() {
+
+            let result = document.getElementById("result");
+
+            result.innerHTML = "<p class='loading'>Fetching data from server...</p>";
+
+            getServerData()
+
+            .then(function(data) {
+
+                result.innerHTML = `
+                    <h3 class="success">Data Received Successfully!</h3>
+                    <p>Name: ${data.name}</p>
+                    <p>Course: ${data.course}</p>
+                    <p>University: ${data.university}</p>
+                `;
+
+            })
+
+            .catch(function(error) {
+
+                result.innerHTML = "Error: " + error;
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
